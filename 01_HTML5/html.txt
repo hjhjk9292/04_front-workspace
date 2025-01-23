@@ -1,0 +1,12 @@
+file:///C:/04_front-workspace/01_HTML5/test1.do
+?
+userId=user01
+&
+userPwd=pass01
+&
+phone=01011112222
+&
+email=a
+%40naver.com
+&
+homepage=https%3A%2F%2Fwww.naver.com
