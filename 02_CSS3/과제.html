@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 작성</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+        }
+        form {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn-go {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-go:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>공지사항 작성하기</h2>
+        <form action="insert.no" method="post">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" required placeholder="제목을 입력하세요.">
+            
+            <label for="content">내용</label>
+            <textarea id="content" name="content" required placeholder="내용을 입력하세요."></textarea>
+            
+            <label for="uploadFile">첨부파일</label>
+            <input type="file" id="uploadFile" name="uploadFile">
+            
+            <button type="submit">작성하기</button>
+        </form>
+        
+        <h2>공지사항 목록</h2>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th>바로가기</th>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>공지사항 제목 9</td>
+                <td>user01</td>
+                <td>2021-03-29</td>
+                <td>34</td>
+                <td><button class="btn-go">바로가기</button></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>공지사항 제목 6</td>
+                <td>answ445</td>
+                <td>2021-03-12</td>
+                <td>67</td>
+                <td><button class="btn-go">바로가기</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>공지사항 제목 3</td>
+                <td>testg12</td>
+                <td>2021-03-01</td>
+                <td>98</td>
+                <td><button class="btn-go">바로가기</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>공지사항 제목 2</td>
+                <td>palwe3</td>
+                <td>2021-01-02</td>
+                <td>85</td>
+                <td><button class="btn-go">바로가기</button></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>공지사항 제목 1</td>
+                <td>xml23</td>
+                <td>2020-12-24</td>
+                <td>124</td>
+                <td><button class="btn-go">바로가기</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
