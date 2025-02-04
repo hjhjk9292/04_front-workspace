@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HTML 요소에 접근하기(해당 요소 객체 가져오기)</h1>
+
+    <h3>1) 아이디를 이용해서 요소 가져오기</h3>
+    <div id="area1" class="area">
+
+    </div>
+    <button onclick="accessId()">아이디로 접근</button>
+
+    <script>
+        function accessId(){
+            // 아이디로 요소 가져올 때
+            // document.getElementById("아이디명"); => 선택된 요소 객체 반환
+            var area1 = document.getElementById("area1");
+            
+            // 선택한 요소의 속성값 가져온다거나 변경 가능
+            // 속성에 접근하고자 할 때 => 선택된요소.접근하고자하는속성명
+            area1.innerHTML += "아이디로 접근 성공! <br>"; // 버튼 누르면 accessId() 함수가 호출되고 area1 선택해서 innerHTML에 입력된 값으로 변경됨 // += 누적해서 작성
+
+            // 선택된 요소의 스타일 변경
+            area1.style.backgroundColor = "pink";
+            area1.style.color = "red";
+            area1.style.width = "200px";
+            area1.sytle.height = "200px";
+        }
+    
+    </script>
+
+    <br><br>
+
+    <div id="area2" class="area" style="background-color: red;"></div>
+    <button onclick="changeColor()">클릭마다 색 변경</button> <!-- 버튼을 누르면 function 안에 있는 내용을 수행-->
+
+    <script>
+        function changeColor(){
+            var area2 = document.getElementById("area2");
+
+            // console.log(area2.style.backgroundColor); // 인터넷 창에서 버튼 클릭하면 red라고 나옴
+            if(area2.style.backgroundColor == "red"){ // 아이디가 area2인 style속성의 backroundColor 요소 값이 red와 같다면
+                area2.style.backgroundColor = "yellow"; // area2의 style속성의 backroundColor 요소 값을 yellow로 변경
+            }else{
+                area2.style.backgroundColor = "red";
+            }
+
+        }
+    </script>
+
+    <br>
+
+    <h3>2) 태그명을 이용해서 요소 가져오기</h3>
+
+    <!-- ul>li{목록$}*5 -->
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+
+    <button onclick="accessTagName()">태그명으로 접근</button>
+
+    <script>
+        function accessTagName(){
+            // 태그명으로 요소 가져올 때★★
+            // document.getElementByTagName("태그명"); => 선택된 요소 객체들이 배열에 담겨서 반환!
+            var list = document.getElementsByTagName("li"); // [li요소객체, li요소객체, ..] => TagName은 값이 하나더라도 배열으로 리턴하게 설계됨 ★
+
+            console.log(list);
+            console.log("배열의 크기(선택된 li 요소 개수) : " + list.length);
+
+            console.log(list[0]); // 목록1에 접근
+
+            // list[0].innerHTML = "안녕하세요"; // 태그 사이에 있는 html을 "안녕하세요"로 변경
+
+            var blueColor = 50; // 변수 설정
+            for(var i=0; i<list.length; i++){
+                list[i].innerHTML = "안녕하세요";
+                list[i].style.backgroundColor = "rgb(130,220," + blueColor + ")";
+                blueColor += 50; // 그라데이션처럼
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>3) name 속성값을 이용해서 요소 가져오기</h3>
+    <form action="">
+
+        <fieldset>
+            <legend>취미</legend>
+
+            <input type="checkbox" name="hobby" value="game" id="game">
+            <label for="game">게임</label>
+
+            <input type="checkbox" name="hobby" value="movie" id="movie">
+            <label for="movie">영화감상</label>
+
+            <input type="checkbox" name="hobby" value="reading" id="reading">
+            <label for="reading">독서</label>
+            
+            <input type="checkbox" name="hobby" value="sports" id="sports">
+            <label for="sports">운동</label>
+
+
+        </fieldset>
+
+    </form>
+
+    <br>
+
+    <div class="area" id="area3"></div>
+    <button onclick="accessName()">name으로 접근</button>
+
+    <script>
+        function accessName(){
+            // name 속성값으로 요소 가져올 때
+            // document.getElementsByName("name속성값"); => 선택된 요소들이 배열에 담겨 반환
+            var hobby = document.getElementsByName("hobby"); // [input 요소객체, input 요소객체, ...]
+
+            // console.log(hobby);
+
+            for(var i=0; i<hobby.length; i++){
+                // console.log(hobby[i].checked); // hobby의 i번째 인덱스 요소가 체크됐는지 확인 // 체크하면 true, 아니면 false로 나옴
+                if(hobby[i].checked){ // 체크된 것이 맞으면
+                    // console.log(hobby[i].value); // 내가 선택한 요소의 value를 가져옴
+                    // document.getElementById("area3").innerHTML += hobby[i].value + "<br>"; // 아이디가 area3인 해당 value들을 누적해서 출력
+                    area3.innerHTML += hobby[i].value + "<br>"; // 아이디값이 1개일 때 이렇게 작성해도 됨 정석은 위 코드처럼
+                }
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>4) 클래스를 이용해서 요소 가져오기</h3>
+
+    <!-- .test+p.test+ul.test>li*2 -->
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test1"></pre>
+
+    <button onclick="accessClass()">클래스로 접근</button>
+
+    <script>
+        function accessClass(){
+            // class 속성으로 요소 가져올 때
+            // document.getElemnetsByClassName("class 속성값") => 선택된 요소들 배열에 담아서 반환
+
+            var arr = document.getElementsByClassName("test");
+
+            // console.log(arr);
+
+            for(var i=0; i<arr.length; i++){
+                console.log(arr[i]) // 하나씩 출력
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>5) 내가 원하는 요소 자유자재로 가져오기 (선택자를 활용)</h3> <!-- 치트키 -->
+
+    <div id="test1">테스트입니다.</div>
+    <div class="test">
+        <h2>안녕</h2>
+        <h2>잘가</h2>
+    </div>
+    <span>ㅋㅋㅋ</span>
+    <h2>빠이</h2>
+    <span>ㅎㅅㅎ</span>
+
+    <br>
+
+    <button onclick="accessSelector()">클릭</button> <!-- 선택자에 접근-->
+
+    <script>
+        function accessSelector(){
+            // 선택자를 이용해서 요소를 가져오고자 할 때
+            // document.querySelector("선택자");    => 선택된 요소 객체 하나만 반환
+            // document.querySelectorAll("선택자"); => 선택된 요소 객체들을 배열에 담아서 반환
+
+            var divEl = document.querySelector("#test1"); // div요소객체  // 단건 // () 안에 선택자를 작성해줌
+            var h2El = document.querySelectorAll(".test>h2"); // [h2요소객체, h2요소객체] // 다건
+            var spanEl = document.querySelector(".test+span"); // span 요소객체 // 단건 // +는 바로 뒤 형제
+
+            console.log(divEl.innerHTML);
+
+            for(var i=0; i<h2El.length; i++){
+                console.log(h2El[i].innerHTML)
+            }
+
+            console.log(spanEl.innerHTML)
+
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>
