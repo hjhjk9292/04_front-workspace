@@ -3,57 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>배열 실습문제4</title>
     <style>
-        .area{border : 1px solid red;
-              width: 500px;
-              height: 20px;}
+        p{margin: 0;}
+        input{margin-top: 1px;}
+        #update{margin-left: 1px}
+        #answer{width: 1000px;}
     </style>
 </head>
 <body>
-    <h1>배열 실습 문제4</h1>
-    <p> 다음 보기의 문자열을 바탕으로 <br>
-    삭제할 음식과 추가할 음식을 입력받아서  <br>
-    지우고, 추가하는 코드를 작성하여라.(단, 1개씩 입력) <br><br>
-    예시) 삭제 : 당근 / 추가 : 타코야끼 <br>
-    결과-> 피자 치킨 햄버거 떡볶이 타코야끼 <br>
-    </p>
+    <h1>배열 실습문제 4</h1>
+    <fieldset>
+        <legend>보기</legend>
+        <p id="menu">피자 치킨 당근 햄버거 떡볶이</p>
+    </fieldset>
+    <input id="update" type="text" placeholder="삭제할 음식이름을 입력하세요">
+    <input id="add" type="text" placeholder="추가할 음식이름을 입력하세요"><br>
+    <input id="answer" type="text"> <br><br><br>
 
-    <form>
-        <fieldset>
-            <legend>보기</legend>
-            <p>
-                피자 치킨 당근 햄버거 떡볶이
-            </p>
-        </fieldset>
-    </form> <br>
-
-    <input type="text" name=deletefood placeholder="삭제할 음식 이름을 입력하세요" style="width: 300px;">
-    <input type="text" name=addfood placeholder="추가할 음식 이름을 입력하세요"  style="width: 300px;">
-    
-    <br><br>
-
-    <div id="area4" class="area"></div> <br>
-
-    <button onclick="sliceSpliceTest()">처리 및 출력</button>
+    <button onclick="update();">처리 및 출력</button>
 
     <script>
-        function sliceSpliceTest(){
-            const area4 = document.querySelector("#area4");
+        function update(){
+            let menu = document.getElementById("menu").innerHTML;
+            const answer = document.getElementById("answer");
+            
+            const add = document.getElementById("add").value;
+            const update = document.getElementById("update").value;
 
-            const arr = ["피자", "치킨", "당근", "햄버거", "떡볶이"];
+            menu = menu.split(" ");
 
-            arr.push(" 타코야끼, ")
+            // 추가
+            menu.push(add);
 
-            // area4.innerHTML += arr.push("타코야끼") + "<br>"
+            // 삭제
+            const index = menu.indexOf(update);
 
-            // splice(시작, 제거할 개수[, 추가요소])
-            area4.innerHTML += arr.splice(2,1) + "<br>"
-            area4.innerHTML += arr + "<br>"
+            if(index != -1){
+                menu.splice(index,1);
+            }else{
+                alert('삭제 메뉴 똑바로 입력해라')
+            }
 
+            const result = menu.join(", ").replace(/, $/, "");
+            answer.value = result;
         }
     </script>
-
-
 </body>
 </html>

@@ -3,52 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>배열 실습 문제1</title>
+    <style>
+        p{margin: 0;}
+    </style>
 </head>
 <body>
     <h1>배열 실습 문제1</h1>
-    <p>다음 보기에 있는 데이터들은 배열로 받고 하나의 배열로 합쳐보세요. <br>
-       이 때 입력 필드에 배열에 있는 데이터를 전송하면 배열의 alert를 통하여 <br>
-       배열의 위치를 알려주고, 없으면 "존재하지 않습니다"를 알려주면 됩니다.
-    </p>
-
-    <form>
-        <fieldset>
-            <legend>보기</legend>
-            <p id="p1">사과,바나나,당근</p>
-            <p id="p2">김밥,치즈,떡볶이,햄버거</p>
-            <p id="p3">환타,사이다,콜라</p>
-            <p id="p4">고양이,강아지</p>
-        </fieldset>
-    </form> <br>
-
-    <input type="text" placeholder="찾을 문자열을 입력하세요">
-    <button onclick="indexOfTest()">전송 및 처리</button>
-
-    <div id="area1" class="area small"></div>
-
-
+    <fieldset>
+        <legend>보기</legend>
+        <p id="p1">사과,바나나,당근</p>
+        <p id="p2">김밥,치즈,떡볶이,햄버거</p>
+        <p id="p3">환타,사이다,콜라</p>
+        <p id="p4">고양이,강아지</p>
+    </fieldset>
+    <input id="menu" type="text" placeholder="찾을 메뉴를 입력"> <br>
+    <button onclick="menuIndex();">전송 및 처리</button>
     <script>
-        function indexOfTest(){
-            const area1 = document.getElementById("area1");
-            const p1 = document.getElementById("p1");
-            const p2 = document.getElementById("p2");
-            const p3 = document.getElementById("p3");
-            const p4 = document.getElementById("p4");
+        function menuIndex(){
+            const area6 = document.getElementById("menu").value;
 
-            const index = arr.indexOf(fruit); // 해당 요소를 찾지 못하면 -1 반환
+            const str1 = document.getElementById("p1").innerHTML.split(",");
+            const str2 = document.getElementById("p2").innerHTML.split(",");
+            const str3 = document.getElementById("p3").innerHTML.split(",");
+            const str4 = document.getElementById("p4").innerHTML.split(",");
 
-            area1.innerHTML = fruit + "은(는) 배열 index"
+            const answer = str1.concat(str2, str3, str4);
+
+            const index = answer.indexOf(area6);
 
             if(index == -1){
-                area1.innerHTML += "존재하지 않습니다."
+                window.alert('그런 메뉴 읎어요');
             }else{
-                area1.innerHTML += index + "번째에 존재합니다."
-
+                window.alert(area6 + '는 배열 index' + index + '번째에 존재합니다.');
             }
         }
     </script>
-
-
 </body>
 </html>

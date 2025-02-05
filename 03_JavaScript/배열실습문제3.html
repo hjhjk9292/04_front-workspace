@@ -3,42 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .area{border : 1px solid red;
-              width: 300px;
-              height: 20px;}
-    </style>
+    <title>배열 실습 문제3</title>
 </head>
 <body>
     <h1>배열 실습 문제3</h1>
-    <p>문자열을 여러개 입력 받은 후 출력 버튼 클릭 시 입력했던 모든 문자열이 출력되도록 만드세요. <br>
-       예) 개구리 -> 입력, 바나나 -> 입력, 복숭아 -> 입력 <br>
-       출력 : 개구리,바나나,복숭아    
-    </p>
-
-    <form>
-        <fieldset>
-            <legend>입력</legend>
-            <input type="text" name="str" value="">
-            <button onclick="input">입력</button>
-        </fieldset>
-    </form> <br>
-
-    <div id="area3" class="area"></div> <br>
-    <button onclick="test3()">출력</button>
+    <fieldset>
+        <legend>입력</legend>
+        <input id="choose" type="text">
+        <button onclick="menu();">입력</button>
+    </fieldset>
+    <input id="print" type="text">
 
     <script>
-        function input(){
+        const choose = document.getElementById("choose");
+        const area8 = document.getElementById("print");
 
-            var str = document.getElementsByName("str").value;
-            // let str = document.getElementByName("str")[0].value;
+        const arr = [];
 
-            const arr = ["개구리","바나나","복숭아"]
-            area3.innerHTML += str + "<br>"
-
+        function menu(){
+            arr.push(choose.value);
+            choose.value = "";
+            area8.value = arr.join(", ");
         }
     </script>
-
 </body>
 </html>
