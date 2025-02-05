@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>배열 실습 문제2</h1>
+    <p>다음 보기에 있는 문자열을 가지고 정답과 같이 만드세요. (별도의 문자열을 쓰면 안됨) <br>
+    그리고 출력 부분에 출력하도록 하면 됩니다. 정답 : "brlove"</p>
+    
+    <form>
+        <fieldset>
+            <legend>보기</legend>
+            <p id="p1">r b</p>
+            <p id="p2">e v o l</p>
+            
+        </fieldset>
+    </form> <br>
+
+    <div id=area2 style="border: 1px solid red; width: 300px; height: 20px;"></div>
+
+    <button onclick = "reverse()">처리</button>
+
+    <script>
+        function reverse(){
+            const area2 = document.getElementById("area2")
+
+            const arr1 = [r,b]
+            const p2 = [e,v,o,l]
+
+            area2.innerHTML += arr1 + "<br>"
+            area2.innerHTML += p1.reverse() + "<br>"
+
+        }
+    </script>
+
+    
+</body>
+</html>
+
+
+<!-- <script>
+    function reverseTest(){
+        const area4 = document.getElementById("area4")
+
+        const arr = [1,2,3,4,5]
+
+        area4.innerHTML += "arr : " + arr + "<br>"
+        area4.innerHTML += "reverse 결과 : " + arr.reverse() + "<br>"
+        area4.innerHTML += "다시 arr : " + arr + "<br>"
+        // 원본 배열에 영향을 끼치는 메소드 (미리 원본 백업해두도록..)
+
+    }
+</script> -->
