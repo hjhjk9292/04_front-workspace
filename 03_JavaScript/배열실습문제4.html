@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         .area{border : 1px solid red;
-              width: 300px;
+              width: 500px;
               height: 20px;}
     </style>
 </head>
@@ -28,8 +28,8 @@
         </fieldset>
     </form> <br>
 
-    <input type="text" placeholder="삭제할 음식 이름을 입력하세요">
-    <input type="text" placeholder="추가할 음식 이름을 입력하세요">
+    <input type="text" name=deletefood placeholder="삭제할 음식 이름을 입력하세요" style="width: 300px;">
+    <input type="text" name=addfood placeholder="추가할 음식 이름을 입력하세요"  style="width: 300px;">
     
     <br><br>
 
@@ -43,11 +43,12 @@
 
             const arr = ["피자", "치킨", "당근", "햄버거", "떡볶이"];
 
-            area4.innerHTML += arr + "<br>"
+            arr.push(" 타코야끼, ")
 
+            // area4.innerHTML += arr.push("타코야끼") + "<br>"
 
             // splice(시작, 제거할 개수[, 추가요소])
-            area4.innerHTML += "splice한 결과 : " + arr.splice(2,6), ",타코야끼" + "<br>"
+            area4.innerHTML += arr.splice(2,1) + "<br>"
             area4.innerHTML += arr + "<br>"
 
         }
