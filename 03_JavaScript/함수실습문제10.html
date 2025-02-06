@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset{
+            text-align: center;
+            background-color: rgb(199, 199, 199);
+        }
+
+        /* div{
+            background-color: orange;
+            width: 200;
+            height: 150;
+        } */
+    </style>
+</head>
+<body>
+    <form action="test.do">
+        <fieldset>
+            <legend>검색할 항목을 선택하세요.</legend>
+            
+            <label for="title1">제목<input type="radio" name="searchType" value="title" onclick="clickedTitle"></label>            
+            <label for="date1">날짜<input type="radio" name="searchType" value="date" onclick="clickedDate"></label>            
+            <label for="user1">작성자<input type="radio" name="searchType" value="author" conclick="clickedUser"></label>
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <!-- clickedTitle -->
+    <div id="titleSearch">
+        <p>검색할제목을 입력하세요 : </p>
+        <input type="text"> <button>검색</button> <br>
+    </div>
+
+    <!-- clickedDate -->
+    <div>
+        <p>검색할 날짜를 선택하세요 : </p>
+        <input type="date">
+        <input type="date">
+        <button>검색</button> <br>
+    </div>
+
+
+    <!-- clickedUser -->
+    <div>
+        <p>검색할 작성자 아이디를 입력하세요 : </p>
+        <input type="text"> <button>검색</button>
+    </div>    
+
+
+    <script>
+        
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
