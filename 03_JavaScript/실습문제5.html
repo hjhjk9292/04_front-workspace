@@ -18,7 +18,7 @@
 
     <br><br>
 
-    계산 결과 : <div id="result"></div>
+    계산 결과 : <div id="area5"></div>
 
     <script>
         function calculator(){
@@ -26,19 +26,16 @@
             const num1 = document.getElementById("num1").value; // "10" ㅡ value를 따오면 문자열 "10"
             const num2 = document.getElementById("num2").value; // "20"
 
-            const sum = Number(num1) + Number(num2); 
-            document.getElementById("result").innerHTML = sum;
+            let result = 0;
 
-            // const minus = Number(num1) - Number(num2); 
-            // document.getElementById("result").innerHTML = minus;
-
-            // const x = Number(num1) * Number(num2); 
-            // document.getElementById("result").innerHTML = x;
-
-            // const y = Number(num1) / Number(num2); 
-            // document.getElementById("result").innerHTML = y;
-
-            
+            switch(operator){
+                case '+' : result = num1 + num2; break;
+                case '-' : result = num1 - num2; break;
+                case '*' : result = num1 * num2; break;
+                case '/' : result = num1 / num2; break;
+                case '%' : result = num1 % num2; break;
+            }
+            document.getElementById("area5").innerHTML =result;       
         }
      </script>
     <hr>

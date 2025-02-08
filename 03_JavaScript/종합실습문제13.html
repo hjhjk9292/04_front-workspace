@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 종합 실습문제(1~15)</title>
+    <style> 
+        *{box-sizing: border-box;} 
+        #calculator{ 
+        margin:auto; 
+        border:2px solid black; 
+        } 
+        #calculator input[type="text"]{ 
+        width:210px; 
+        height:50px; 
+        font-size:2em; 
+        font-weight: bold; 
+        text-align:right; 
+        border:1px solid black; 
+        overflow:hidden; 
+        } 
+        #calculator input[type="button"]{ 
+        font-size:1.5em;
+        font-weight:bold; width:50px; 
+        height:50px; 
+        } 
+        </style>
+        
+</head>
+<body>
+    <h1 style="text-align: center;">자바스크립트 종합 실습문제(1~15)</h1>
+
+    <h4>1. 실행 버튼 클릭 시 사용자에게 알람창(prompt)으로 "메세지를 입력하세요" 문구를 출력해주고
+        이 때 입력받은 내용이 div#test1에 출력될 수 있도록 하시오.
+        단, 사용자에게 입력 받은 값이 없을 경우 "메세지가 입력되지 않았습니다"가 출력될 수 있도록 하시오.
+    </h4>
+    <button>실행</button>
+
+    <hr>
+    <br>
+
+    <h4>2. 실행 버튼 클릭 시 사용자에게 알람창(cofirm)으로 "개인정보활용에 동의하시겠습니까?"를 출력해주고
+        확인을 누르면 "당신의 개인정보가 유출되었습니다", 취소를 누르면 "당신의 개인정보 유출을 막았습니다" 라는
+        메세지가 div#test2에 출력될 수 있도록 하시오.
+    </h4>
+    <button>실행</button>
+
+    <hr>
+    <br>
+
+    <h4>3. 실행 버튼 클릭 시 10개의 랜덤(1~100)값을 발생시켜 해당 랜덤값을 담은 배열을 만들고
+        해당 배열을 내림차순 정렬한 후 해당 숫자들이 div#3>ul 안에 총 10개의 li 요소로 출력될 수 있도록 하시오.
+    </h4>
+    <button>실행</button>
+
+    <hr>
+    <br>
+
+    <h4>4. input[type=text name=img]인 요소에 화면에 출력하고자 하는 이미지의 경로를 입력받은 후에
+        출력 버튼 클릭하면 div.img-container 요소 내에 사용자가 입력한 주소의 imgrk 200X200 크기로 출력될 수 있도록 하시오.
+    </h4>
+    <input type="text">
+    <button>출력</button>
+
+    <hr>
+    <br>
+
+    <h4>5. 아래 태그의 데이터를 확인하기 버튼을 클릭하면 모두 가져와 3글자 이상인 데이터만 div#checkStr에 출력하기</h4>
+    <div>
+        가나다라
+        abcde
+        썬칩
+        홈런볼
+        초코칩쿠키
+        칸쵸
+        초코파이
+        칙촉
+    </div>
+    <br>
+    <button>확인하기</button>
+
+    <hr>
+    <br>
+
+    <h4>6. 아래의 input[type=number] 두개는 숫자를, select>option 요소는 연산하고자 하는 연산자를 입력받기 위한것이다.
+        실행 버튼 클릭 시 사용자가 입력한 값들을 가지고 그에 맞는 적절한 연산 후 div#calc-result에 결과가 출력될 수 있도록 하시오.
+    </h4>
+
+    <input type="number">
+    <input type="number">
+    <select name="operator">
+        <option value="plus">+</option>
+        <option value="minus">-</option>
+        <option value=""></option>
+    </select>
+    <button>실행</button>
+
+    <hr>
+    <br>
+
+    <h4>7. div.img-container 안에 원하는 이미지를 100x100사이즈로 한 개 출력하고
+        그 사진을 클릭할때마다 이미지의 크기가 가로 세로 10px씩 증가되게끔 구현하시오.
+    </h4>
+    <img src="" alt="">
+    
+    <hr>
+    <br>
+    <h4>8. 추가 버튼 클릭시마다 input[type=text]인 요소가 div.input-container에 추가될 수 있도록 구현하시오. 단, 최대 10개까지만 추가될 수 있도록 하시오.
+        (10개를 초과하려는 순간 "10개까지만 추가 가능합니다."와 같은 알람창 출력)
+    </h4>
+
+    <button>추가</button>
+
+    <hr>
+    <br>
+    <h4>9. 출력 버튼을 클릭 시 아래의 객체에 저장된 데이터(속성,속성값)의 내용을 ul안에 li요소로 출력되게 하시오.
+        {name:"김시연", age:23, height:159.5, weight:53.7, addr:"서울시 강남구", birthDay:2000/01/15}
+    </h4>
+    <button>출력</button>
+
+    <hr>
+    <br>
+
+    <h4>10. 출력하기 버튼 클릭 시 아래의 객체배열로 저장된 데이터를 div#data-table 영역 안에 table 요소를 만들어서 출력하시오.
+        [{no:1,title:"첫번째",writer:"유저1",enrolldate:오늘날짜} <br>
+        {no:2,title:"두번째",writer:"유저2",enrolldate:오늘날짜} <br>
+        {no:3,title:"세번째",writer:"유저3",enrolldate:오늘날짜} <br>
+        {no:4,title:"네번째",writer:"유저4",enrolldate:오늘날짜}] <br>
+        * 이 때 위의 객체배열을 전역변수로 만들어 둘 것 *
+    </h4>
+    <button>출력하기</button>
+
+    <hr>
+    <br>
+    
+    <h4>11. 아래의 input태그들을 이용해서 사용자로부터 글번호, 제목, 작성자명, 작성일을 입력받고
+        추가 버튼 클릭 시 위 10번 문제에서 세팅해둔 전역 객체배열에 추가한 후 table에도 한 행 추가 되는 기능을 구현하시오.
+        (테스트 시 10번 실행 후 11번 실행하기)
+    </h4>
+
+    글번호 : <input type="text"> <br>
+    제목 : <input type="text"> <br>
+    작성자 : <input type="text"> <br>
+    작성일 : <input type="date"> <br>
+    <button>추가</button>
+
+    <hr>
+    <br>
+
+    <h4>12. 아래의 텍스트 상자에서 사용자가 입력할 때 마다 현재 입력된 글자와 글자수를 div#text-container에 출력되게끔 구현하시오.</h4>
+    <input type="text">
+
+    <hr>
+    <br>
+
+    <h4>13. 아래의 텍스트 상자를 이용해서 사용자에게 비밀번호를 두 번 입력 받는다.
+        이 때 비밀번호와 비밀번호 확인 텍스트 상자에 사용자가 입력할 때 마다 두 개의 입력된 비밀번호를 비교해서
+        두 개가 일치하면 초록색 문구로 "일치합니다.", 일치하지 않으면 빨강색으로 "일치하지 않습니다." 문구를
+        span#pwd-result에 출력하시오.
+    </h4>
+    비밀번호 : <input type="text"> <br>
+    비밀번호 확인 : <input type="text">
+
+    <br>
+    <hr>
+
+    <h4>14. 별도로 첨부한 "[참고]JavaScript종합실습문제14번문제.pdf"를 참고하여 하단에 작성하시오.</h4>
+    <table id="calculator"> 
+        <tr> 
+        <th colspan="4"> 
+        <input type="text" value="0" id="result"> </th> 
+        </tr> 
+        <tr> 
+        <th><input type="button" value="("></th> <th><input type="button" value=")"></th> <th><input type="button" value="%"></th> <th><input type="button" value="AC"></th> </tr> 
+        <tr> 
+        <th><input type="button" value="7"></th> <th><input type="button" value="8"></th> <th><input type="button" value="9"></th> <th><input type="button" value="/"></th> </tr> 
+        <tr> 
+        <th><input type="button" value="4"></th> <th><input type="button" value="5"></th> <th><input type="button" value="6"></th> <th><input type="button" value="*"></th> </tr> 
+        <tr> 
+        <th><input type="button" value="1"></th> <th><input type="button" value="2"></th> <th><input type="button" value="3"></th>
+        <th><input type="button" value="-"></th> </tr> 
+        <tr> 
+        <th><input type="button" value="0"></th> <th><input type="button" value="."></th> <th><input type="button" value="="></th> <th><input type="button" value="+"></th> </tr> 
+        </table> 
+
+    <hr>
+    <br>
+
+    <h4>15. 전체선택과 개별선택 기능을 구현하시오. 하단의 체크박스를 중 전체선택 check시 개별선택들도 check되게, 전체선택 check해제 시 개별선택들도 check해제되도록 
+        개별선택들 모두 check시 전체선택도 check되도록, 개별선택 중 일부만 check 시 전체선택은 check해제 되도록 구현하시오.
+        타 사이트 회원가입 들어가기 전 이용약관 동의 부분 체크하는 기능과 유사
+    </h4>
+
+    <label><input type="checkbox"> 전체선택</label> <br>
+    <label><input type="checkbox"> 개별선택1</label> <br>
+    <label><input type="checkbox"> 개별선택2</label> <br>
+    <label><input type="checkbox"> 개별선택3</label> <br>
+        
+</body>
+</html>

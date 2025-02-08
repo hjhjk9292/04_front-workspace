@@ -13,35 +13,15 @@
     </p>
 
     <table border="1" style="width: 200px; height: 200px;" id="studentTable">
-        <div>
+        <thead>
             <tr>
                 <th>이름</th>
                 <th>나이</th>
                 <th>주소</th>
             </tr>
-        </div>
-        <div id="table1">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>                
-        </div>
-        <div id="table2">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>                
-        </div>
-        <div id="table3">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>                
-        </div>
-
+        </thead>
+        <tbody id="tableBody">
+        </tbody>           
     </table>
 
     <p style="color: red;">학생정보 테이블</p>
@@ -49,86 +29,51 @@
 
     <script>
         function inputPrint() {
+            // 학생 정보를 저장할 배열
+            let objectArr = [];
 
-            const objectArr = [
-                {
-                     name : '차은우',
-                     age : 20,
-                     address : '서울',
-                },
-                {
-                     name : '주지훈',
-                     age : 30,
-                     address : '부산',
-                },
-                {
-                     name : '이제훈',
-                     age : 40,
-                     address : '어딘가',
-                },
-                
-            ];  
+            // 학생 정보 3명 저장 받아 객체 배열에 저장(for문 사용)
+            for(let i=0; i<3; i++){ // const로 하면 안 변함! 이걸로 하면 안됨
+                let name = prompt((i+1) + "번째 학생 이름 입력");
+                let age = prompt((i+1) + "번째 학생 나이 입력");
+                let address = prompt((i+1) + "번째 학생 주소 입력");
 
-            // let i = {};
+                // 입력값이 하나라도 없으면 다시 입력하도록 처리
+                if (!name || !age || !address) {
+                    alert("모든 값을 입력해야 합니다!");
+                    ㅑ--; // 다시 입력하도록 i 감소
+                    continue;
+                }
 
-            // 학생 정보 3명 저장 받아(for문 사용)
-            for(let i=0; i<objectArr.length; i++){ // const로 하면 안 변함! 이걸로 하면 안됨
-                var student = prompt((i+1) + "번째 학생 이름 입력");        
+                // 학생 정보 객체로 저장
+                let student = {
+                    name: name,
+                    age: Number(age),
+                    address: address,
+                };
+
+                // 배열에 추가
+                objectArr.push(student);
             }
 
-            // 학생 정보 객체 배열에 저장
-            for(let stu of objectArr){ // {}, {}, {}, {}
-                console.log(stu);                
-            }           
-
-            // 객체 배열로 출력 시 console.log에 나오게 하는 코드
+            // console.log로 객체 배열 출력
             console.log(objectArr)
 
-            // #studentTable 요소에 학생 정보는 객체로 처리하여 저장 후 테이블에 입력
-            // document.getElementById("objectArr").innerHTML = student.toString();
+            // 테이블에 학생 정보 추가
+            let tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = ""; // 기존 테이블 내용 초기화
 
+            for (let stu of objectArr) {
+                let row = "<tr>";
+                    row += "<td>" + stu.name + "</td>";
+                    row += "<td>" + stu.age + "세</td>";
+                    row += "<td>" + stu.address + "</td>";
+                    row += "</tr>";
 
-        }
-    </script>
-
-
-</body>
-</html>
-
-<!-- 
-
-    for(let i=0; i<arr.length; i++){ // const로 하면 안 변함! 이걸로 하면 안됨
-        area1.innerHTML += arr[i] + "<br>";
-        
-    }
-
-
-    
-    <table id="tb_write"></table>
-
-    <script>
-        function makeTableWrite(){
-            var table_write = document.getElementById("tb_write");
-
-            var row = prompt("행을 입력해주세요");
-            var col = prompt("열을 입력해주세요");
-
-            var str = "<table border='1'>";
-            var count = 1;
-
-            for(var i=1; i<=row; i++){
-                var str2 = "";
-                for(var j=1; j<=col; j++){
-                    str2+="<td>" + count++ + "</td>";
-                }
-                str += "<tr>" + str2 + "</tr>";
+                tableBody.innerHTML += row;
             }
 
-            table_write.innerHTML = str;
-
-            document.write(str)
         }
     </script>
-
-
--->
+</body>
+</html>
