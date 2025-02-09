@@ -81,8 +81,6 @@
         }
     </script>
 
-
-
     <hr>
     <br>
 
@@ -90,29 +88,27 @@
         해당 배열을 내림차순 정렬한 후 해당 숫자들이 div#3>ul 안에 총 10개의 li 요소로 출력될 수 있도록 하시오.
     </h4>
     <button onclick="clicked3()">실행</button>
-    <div id="3">
+    <div id="test3" style="height: 200px;">
         <ul></ul>
     </div>
 
     <script>
         function clicked3(){
-            let test3Div = document.getElementById("3");
-            let randomNumbers = [];
+            let test3Div = document.getElementById("test3");
+            let randomNumbers = []; // 랜덤 숫자를 저장할 배열
 
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 10; i++) { // 10개의 랜덤 숫자 생성
                 randomNumbers.push(Math.floor(Math.random() * 100) + 1);
             }
 
-            randomNumbers.sort((a, b) => b - a);
+            randomNumbers.sort((a, b) => b - a); // 내림차순 정렬
 
-            let ulElement = test3Div.querySelector('ul');
+            let ulElement = document.querySelector("#test3 ul");
             ulElement.innerHTML = "";  
 
             for (let number of randomNumbers) {
-                let li = document.createElement('li');
-                li.textContent = number;
-                ulElement.appendChild(li);
-            }
+            ulElement.innerHTML += "<li>" + number + "</li>";
+        }
         }
     </script>
 
@@ -151,7 +147,7 @@
     
 
     <h4>5. 아래 태그의 데이터를 확인하기 버튼을 클릭하면 모두 가져와 3글자 이상인 데이터만 div#checkStr에 출력하기</h4>
-    <div id="word">
+    <p id="word">
         가나다라
         abcde
         썬칩
@@ -160,7 +156,7 @@
         칸쵸
         초코파이
         칙촉
-    </div>
+    </p>
     <button onclick="checkStrLength()">확인하기</button>
     <div id="checkStr"></div>
 
@@ -252,7 +248,7 @@
     </h4>
 
     <button onclick="addInput()">추가</button>
-    <div class="input-container"></div>
+    <div class="input-container" style="height: 200px;"></div>
     
     <script>
         function addInput() {
@@ -531,7 +527,7 @@
     <label><input type="checkbox" class="subCheck" onclick="checkAll()"> 개별선택3</label> <br>
     
     <script>
-        function toggleAll() {
+        function toggleAll() { // 전체 선택/해제
             let checkboxes = document.querySelectorAll(".subCheck");
             let allChecked = document.getElementById("allCheck").checked;
             for (let i = 0; i < checkboxes.length; i++) {
@@ -539,7 +535,7 @@
             }
         }
     
-        function checkAll() {
+        function checkAll() { // 개별 체크 시 전체 선택 상태 업데이트
             let allCheck = document.getElementById("allCheck");
             let checkboxes = document.querySelectorAll(".subCheck");
             allCheck.checked = [...checkboxes].every(cb => cb.checked);
