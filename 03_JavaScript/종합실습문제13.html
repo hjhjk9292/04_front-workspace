@@ -24,6 +24,12 @@
         font-weight:bold; width:50px; 
         height:50px; 
         } 
+
+        div {
+            /* border: 1px solid red; */
+            height: 100px;
+            width: 300px;
+        }
         </style>
         
 </head>
@@ -34,7 +40,23 @@
         이 때 입력받은 내용이 div#test1에 출력될 수 있도록 하시오.
         단, 사용자에게 입력 받은 값이 없을 경우 "메세지가 입력되지 않았습니다"가 출력될 수 있도록 하시오.
     </h4>
-    <button>실행</button>
+    <button onclick="clicked()">실행</button>
+    <div id="test1"></div>
+
+    <script>
+        function clicked(){
+            let message = prompt("메세지를 입력하세요");
+            let test1Div = document.getElementById("test1");
+            
+            if (message) {
+                test1Div.textContent = message;
+            } else {
+                test1Div.textContent = "메세지가 입력되지 않았습니다";
+            }
+        }
+
+
+    </script>
 
     <hr>
     <br>
@@ -43,7 +65,23 @@
         확인을 누르면 "당신의 개인정보가 유출되었습니다", 취소를 누르면 "당신의 개인정보 유출을 막았습니다" 라는
         메세지가 div#test2에 출력될 수 있도록 하시오.
     </h4>
-    <button>실행</button>
+    <button onclick="clicked2()">실행</button>
+    <div id="test2"></div>
+
+    <script>
+        function clicked2(){
+            let result = confirm("개인정보 활용에 동의하시겠습니까?");
+            let test2Div = document.getElementById("test2");
+
+            if (result) {
+                test2Div.innerHTML = "당신의 개인정보가 유출되었습니다."
+            } else{
+                test2Div.innerHTML = "당신의 개인정보 유출을 막았습니다"
+            }
+        }
+    </script>
+
+
 
     <hr>
     <br>
@@ -51,22 +89,69 @@
     <h4>3. 실행 버튼 클릭 시 10개의 랜덤(1~100)값을 발생시켜 해당 랜덤값을 담은 배열을 만들고
         해당 배열을 내림차순 정렬한 후 해당 숫자들이 div#3>ul 안에 총 10개의 li 요소로 출력될 수 있도록 하시오.
     </h4>
-    <button>실행</button>
+    <button onclick="clicked3()">실행</button>
+    <div id="3">
+        <ul></ul>
+    </div>
+
+    <script>
+        function clicked3(){
+            let test3Div = document.getElementById("3");
+            let randomNumbers = [];
+
+            for (let i = 0; i < 10; i++) {
+                randomNumbers.push(Math.floor(Math.random() * 100) + 1);
+            }
+
+            randomNumbers.sort((a, b) => b - a);
+
+            let ulElement = test3Div.querySelector('ul');
+            ulElement.innerHTML = "";  
+
+            for (let number of randomNumbers) {
+                let li = document.createElement('li');
+                li.textContent = number;
+                ulElement.appendChild(li);
+            }
+        }
+    </script>
 
     <hr>
     <br>
 
     <h4>4. input[type=text name=img]인 요소에 화면에 출력하고자 하는 이미지의 경로를 입력받은 후에
-        출력 버튼 클릭하면 div.img-container 요소 내에 사용자가 입력한 주소의 imgrk 200X200 크기로 출력될 수 있도록 하시오.
+        출력 버튼 클릭하면 div.img-container 요소 내에 사용자가 입력한 주소의 img가 200X200 크기로 출력될 수 있도록 하시오.
     </h4>
-    <input type="text">
-    <button>출력</button>
+    <input type="text" id="imgInput" placeholder="이미지 URL을 입력하세요">
+    <button onclick="displayImage()">출력</button>
+
+    <div class="img-container"></div>
+
+    <script>
+        function displayImage(){
+            let imgURL = document.getElementById("imgInput").value; // 사용자가 입력한 이미지 URL
+            let imgContainer = document.querySelector(".img-container"); // 이미지 출력할 div
+
+            if(imgURL){
+                let img = document.createElement("img");
+                img.src = imgURL;
+                img.width = 200; // 이미지 크기를 200x200으로 설정
+                img.height = 200;
+                imgContainer.innerHTML = ""; // 이전에 출력된 이미지가 있으면 삭제
+                imgContainer.appendChild(img); // 새 이미지를 div에 추가
+            } else {
+                imgContainer.innerHTML = "이미지 URL을 입력해주세요."; // URL이 비어 있으면 메세지 출력
+                // 사용할 url : https://images.pexels.com/photos/8537887/pexels-photo-8537887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+            }
+        }
+    </script>
 
     <hr>
     <br>
+    
 
     <h4>5. 아래 태그의 데이터를 확인하기 버튼을 클릭하면 모두 가져와 3글자 이상인 데이터만 div#checkStr에 출력하기</h4>
-    <div>
+    <div id="word">
         가나다라
         abcde
         썬칩
@@ -76,8 +161,23 @@
         초코파이
         칙촉
     </div>
-    <br>
-    <button>확인하기</button>
+    <button onclick="checkStrLength()">확인하기</button>
+    <div id="checkStr"></div>
+
+    <script>
+        function checkStrLength() {
+            let textDiv = document.getElementById("word");
+            let words = textDiv.textContent.trim().split("\n");
+            let result = "";
+            for (let i = 0; i < words.length; i++) {
+                let word = words[i].trim();
+                if (word.length >= 3) {
+                    result += word + "<br>";
+                }
+            }
+            document.getElementById("checkStr").innerHTML = result;
+        }
+    </script>
 
     <hr>
     <br>
@@ -86,14 +186,45 @@
         실행 버튼 클릭 시 사용자가 입력한 값들을 가지고 그에 맞는 적절한 연산 후 div#calc-result에 결과가 출력될 수 있도록 하시오.
     </h4>
 
-    <input type="number">
-    <input type="number">
-    <select name="operator">
-        <option value="plus">+</option>
-        <option value="minus">-</option>
-        <option value=""></option>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
     </select>
-    <button>실행</button>
+    <button onclick="calculate()">실행</button>
+    <div id="calc-result"></div>
+
+    <script>
+        function calculate() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let operator = document.getElementById("operator").value;
+            let result;
+
+            switch (operator) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    result = num2 !== 0 ? num1 / num2 : "0으로 나눌 수 없습니다.";
+                    break;
+                default:
+                    result = "올바른 연산자를 선택하세요.";
+            }
+
+            document.getElementById("calc-result").textContent = "결과: " + result;
+        }
+
+    </script>
 
     <hr>
     <br>
@@ -101,7 +232,18 @@
     <h4>7. div.img-container 안에 원하는 이미지를 100x100사이즈로 한 개 출력하고
         그 사진을 클릭할때마다 이미지의 크기가 가로 세로 10px씩 증가되게끔 구현하시오.
     </h4>
-    <img src="" alt="">
+    <div class="img-container">
+        <img src="https://images.pexels.com/photos/8537887/pexels-photo-8537887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+        width="100" height="100" onclick="increaseSize()">
+    </div>
+
+    <script>
+        function increaseSize() {
+            let img = document.querySelector(".img-container img");
+            img.width += 10;
+            img.height += 10;
+        }
+    </script>
     
     <hr>
     <br>
@@ -109,14 +251,50 @@
         (10개를 초과하려는 순간 "10개까지만 추가 가능합니다."와 같은 알람창 출력)
     </h4>
 
-    <button>추가</button>
+    <button onclick="addInput()">추가</button>
+    <div class="input-container"></div>
+    
+    <script>
+        function addInput() {
+            let container = document.querySelector(".input-container");
+            let inputCount = container.getElementsByTagName("input").length;
+    
+            if (inputCount >= 10) {
+                alert("10개까지만 추가 가능합니다.");
+                return;
+            }
+    
+            container.innerHTML += '<input type="text"><br>';
+        }
+    </script>
 
     <hr>
     <br>
     <h4>9. 출력 버튼을 클릭 시 아래의 객체에 저장된 데이터(속성,속성값)의 내용을 ul안에 li요소로 출력되게 하시오.
         {name:"김시연", age:23, height:159.5, weight:53.7, addr:"서울시 강남구", birthDay:2000/01/15}
     </h4>
-    <button>출력</button>
+    <button onclick="displayObject()">출력</button>
+<ul id="objectList"></ul>
+
+<script>
+    function displayObject() {
+        let obj = {
+            name: "김시연",
+            age: 23,
+            height: 159.5,
+            weight: 53.7,
+            addr: "서울시 강남구",
+            birthDay: "2000/01/15"
+        };
+
+        let list = document.getElementById("objectList");
+        list.innerHTML = "";
+
+        for (let key in obj) {
+            list.innerHTML += "<li>" + key + ": " + obj[key] + "</li>";
+        }
+    }
+</script>
 
     <hr>
     <br>
@@ -128,7 +306,30 @@
         {no:4,title:"네번째",writer:"유저4",enrolldate:오늘날짜}] <br>
         * 이 때 위의 객체배열을 전역변수로 만들어 둘 것 *
     </h4>
-    <button>출력하기</button>
+    <button onclick="displayTable()">출력하기</button>
+    <div id="data-table"></div>
+    
+    <script>
+        let tableData = [
+            {no: 1, title: "첫번째", writer: "유저1", enrolldate: new Date().toISOString().split('T')[0]},
+            {no: 2, title: "두번째", writer: "유저2", enrolldate: new Date().toISOString().split('T')[0]},
+            {no: 3, title: "세번째", writer: "유저3", enrolldate: new Date().toISOString().split('T')[0]},
+            {no: 4, title: "네번째", writer: "유저4", enrolldate: new Date().toISOString().split('T')[0]},
+        ];
+    
+        function displayTable() {
+        let container = document.getElementById("data-table");
+        let tableHTML = "<table border='1'><tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th></tr>";
+
+        for (let i = 0; i < tableData.length; i++) {
+            tableHTML += "<tr><td>" + tableData[i].no + "</td><td>" + tableData[i].title + "</td><td>" +
+                        tableData[i].writer + "</td><td>" + tableData[i].enrolldate + "</td></tr>";
+        }
+
+        tableHTML += "</table>";
+        container.innerHTML = tableHTML;
+    }
+    </script>
 
     <hr>
     <br>
@@ -138,17 +339,44 @@
         (테스트 시 10번 실행 후 11번 실행하기)
     </h4>
 
-    글번호 : <input type="text"> <br>
-    제목 : <input type="text"> <br>
-    작성자 : <input type="text"> <br>
-    작성일 : <input type="date"> <br>
-    <button>추가</button>
+    글번호: <input type="text" id="no"> <br>
+    제목: <input type="text" id="title"> <br>
+    작성자: <input type="text" id="writer"> <br>
+    작성일: <input type="date" id="date"> <br>
+    <button onclick="addRow()">추가</button>
+    
+    <script>
+        function addRow() {
+            let no = document.getElementById("no").value;
+            let title = document.getElementById("title").value;
+            let writer = document.getElementById("writer").value;
+            let date = document.getElementById("date").value;
+    
+            if (!no || !title || !writer || !date) {
+                alert("모든 값을 입력하세요!");
+                return;
+            }
+    
+            let newRow = { no, title, writer, enrolldate: date };
+            tableData.push(newRow);
+            displayTable();
+            //tableData.push({ no, title, writer, enrolldate: date });
+            //displayTable();
+        }
+    </script>
 
     <hr>
     <br>
 
     <h4>12. 아래의 텍스트 상자에서 사용자가 입력할 때 마다 현재 입력된 글자와 글자수를 div#text-container에 출력되게끔 구현하시오.</h4>
-    <input type="text">
+    <input type="text" oninput="updateText(this.value)">
+    <div id="text-container"></div>
+    
+    <script>
+        function updateText(value) {
+            document.getElementById("text-container").innerHTML = "입력된 글자: " + value + " (" + value.length + "자)";
+        }
+    </script>
 
     <hr>
     <br>
@@ -158,8 +386,25 @@
         두 개가 일치하면 초록색 문구로 "일치합니다.", 일치하지 않으면 빨강색으로 "일치하지 않습니다." 문구를
         span#pwd-result에 출력하시오.
     </h4>
-    비밀번호 : <input type="text"> <br>
-    비밀번호 확인 : <input type="text">
+    비밀번호: <input type="password" id="pwd1" oninput="checkPassword()"> <br>
+    비밀번호 확인: <input type="password" id="pwd2" oninput="checkPassword()"> <br>
+    <span id="pwd-result"></span>
+    
+    <script>
+        function checkPassword() {
+            let pwd1 = document.getElementById("pwd1").value;
+            let pwd2 = document.getElementById("pwd2").value;
+            let resultSpan = document.getElementById("pwd-result");
+    
+            if (pwd1 === pwd2 && pwd1.length > 0) {
+                resultSpan.textContent = "일치합니다.";
+                resultSpan.style.color = "green";
+            } else {
+                resultSpan.textContent = "일치하지 않습니다.";
+                resultSpan.style.color = "red";
+            }
+        }
+    </script>
 
     <br>
     <hr>
@@ -167,21 +412,110 @@
     <h4>14. 별도로 첨부한 "[참고]JavaScript종합실습문제14번문제.pdf"를 참고하여 하단에 작성하시오.</h4>
     <table id="calculator"> 
         <tr> 
-        <th colspan="4"> 
-        <input type="text" value="0" id="result"> </th> 
+            <th colspan="4"> 
+                <input type="text" value="0" id="result" readonly> 
+            </th> 
         </tr> 
         <tr> 
-        <th><input type="button" value="("></th> <th><input type="button" value=")"></th> <th><input type="button" value="%"></th> <th><input type="button" value="AC"></th> </tr> 
+            <th><input type="button" value="(" onclick="addToDisplay('(')"></th> 
+            <th><input type="button" value=")" onclick="addToDisplay(')')"></th> 
+            <th><input type="button" value="%" onclick="addToDisplay('%')"></th> 
+            <th><input type="button" value="AC" onclick="clearDisplay()"></th> 
+        </tr> 
         <tr> 
-        <th><input type="button" value="7"></th> <th><input type="button" value="8"></th> <th><input type="button" value="9"></th> <th><input type="button" value="/"></th> </tr> 
+            <th><input type="button" value="7" onclick="addToDisplay('7')"></th> 
+            <th><input type="button" value="8" onclick="addToDisplay('8')"></th> 
+            <th><input type="button" value="9" onclick="addToDisplay('9')"></th> 
+            <th><input type="button" value="/" onclick="addToDisplay('/')"></th> 
+        </tr> 
         <tr> 
-        <th><input type="button" value="4"></th> <th><input type="button" value="5"></th> <th><input type="button" value="6"></th> <th><input type="button" value="*"></th> </tr> 
+            <th><input type="button" value="4" onclick="addToDisplay('4')"></th> 
+            <th><input type="button" value="5" onclick="addToDisplay('5')"></th> 
+            <th><input type="button" value="6" onclick="addToDisplay('6')"></th> 
+            <th><input type="button" value="*" onclick="addToDisplay('*')"></th> 
+        </tr> 
         <tr> 
-        <th><input type="button" value="1"></th> <th><input type="button" value="2"></th> <th><input type="button" value="3"></th>
-        <th><input type="button" value="-"></th> </tr> 
+            <th><input type="button" value="1" onclick="addToDisplay('1')"></th> 
+            <th><input type="button" value="2" onclick="addToDisplay('2')"></th> 
+            <th><input type="button" value="3" onclick="addToDisplay('3')"></th> 
+            <th><input type="button" value="-" onclick="addToDisplay('-')"></th> 
+        </tr> 
         <tr> 
-        <th><input type="button" value="0"></th> <th><input type="button" value="."></th> <th><input type="button" value="="></th> <th><input type="button" value="+"></th> </tr> 
-        </table> 
+            <th><input type="button" value="0" onclick="addToDisplay('0')"></th> 
+            <th><input type="button" value="." onclick="addToDisplay('.')"></th> 
+            <th><input type="button" value="=" onclick="calculateResult()"></th> 
+            <th><input type="button" value="+" onclick="addToDisplay('+')"></th> 
+        </tr> 
+    </table>
+    
+    <script>
+        let expression = ""; // 수식을 저장하는 변수
+    
+        function addToDisplay(value) {
+            let display = document.getElementById("result");
+    
+            if (display.value === "0") {
+                display.value = value;
+                expression = value;
+            } else {
+                display.value += value;
+                expression += value;
+            }
+        }
+    
+        function clearDisplay() {
+            document.getElementById("result").value = "0";
+            expression = "";
+        }
+    
+        function calculateResult() {
+            let display = document.getElementById("result");
+            let num1, num2, operator, result;
+    
+            if (expression.includes("+")) {
+                [num1, num2] = expression.split("+").map(Number);
+                operator = "+";
+            } else if (expression.includes("-")) {
+                [num1, num2] = expression.split("-").map(Number);
+                operator = "-";
+            } else if (expression.includes("*")) {
+                [num1, num2] = expression.split("*").map(Number);
+                operator = "*";
+            } else if (expression.includes("/")) {
+                [num1, num2] = expression.split("/").map(Number);
+                operator = "/";
+            } else if (expression.includes("%")) {
+                [num1, num2] = expression.split("%").map(Number);
+                operator = "%";
+            } else {
+                display.value = "Error";
+                return;
+            }
+    
+            switch (operator) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    result = num2 !== 0 ? num1 / num2 : "Error";
+                    break;
+                case "%":
+                    result = num1 % num2;
+                    break;
+                default:
+                    result = "Error";
+            }
+    
+            display.value = result;
+            expression = result.toString();
+        }
+    </script>
 
     <hr>
     <br>
@@ -191,10 +525,26 @@
         타 사이트 회원가입 들어가기 전 이용약관 동의 부분 체크하는 기능과 유사
     </h4>
 
-    <label><input type="checkbox"> 전체선택</label> <br>
-    <label><input type="checkbox"> 개별선택1</label> <br>
-    <label><input type="checkbox"> 개별선택2</label> <br>
-    <label><input type="checkbox"> 개별선택3</label> <br>
+    <label><input type="checkbox" id="allCheck" onclick="toggleAll()"> 전체선택</label> <br>
+    <label><input type="checkbox" class="subCheck" onclick="checkAll()"> 개별선택1</label> <br>
+    <label><input type="checkbox" class="subCheck" onclick="checkAll()"> 개별선택2</label> <br>
+    <label><input type="checkbox" class="subCheck" onclick="checkAll()"> 개별선택3</label> <br>
+    
+    <script>
+        function toggleAll() {
+            let checkboxes = document.querySelectorAll(".subCheck");
+            let allChecked = document.getElementById("allCheck").checked;
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = allChecked;
+            }
+        }
+    
+        function checkAll() {
+            let allCheck = document.getElementById("allCheck");
+            let checkboxes = document.querySelectorAll(".subCheck");
+            allCheck.checked = [...checkboxes].every(cb => cb.checked);
+        }
+    </script>
         
 </body>
 </html>
