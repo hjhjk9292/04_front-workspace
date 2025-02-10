@@ -163,11 +163,11 @@
     <script>
         function checkStrLength() {
             let textDiv = document.getElementById("word");
-            let words = textDiv.textContent.trim().split("\n");
+            let words = textDiv.textContent.trim().split("\n");// 단어를 배열로 변환
             let result = "";
-            for (let i = 0; i < words.length; i++) {
+            for (let i = 0; i < words.length; i++) {// 단어 개수만큼 반복
                 let word = words[i].trim();
-                if (word.length >= 3) {
+                if (word.length >= 3) {// 3글자 이상인 경우만 출력
                     result += word + "<br>";
                 }
             }
@@ -260,7 +260,7 @@
                 return;
             }
     
-            container.innerHTML += '<input type="text"><br>';
+            container.innerHTML += '<input type="text"><br>';// 새로운 입력창 추가
         }
     </script>
 
@@ -286,7 +286,7 @@
         let list = document.getElementById("objectList");
         list.innerHTML = "";
 
-        for (let key in obj) {
+        for (let key in obj) {// 객체의 key 값을 하나씩 가져옴
             list.innerHTML += "<li>" + key + ": " + obj[key] + "</li>";
         }
     }
@@ -342,7 +342,7 @@
     <button onclick="addRow()">추가</button>
     
     <script>
-        function addRow() {
+        function addRow() {// 입력값 가져오기
             let no = document.getElementById("no").value;
             let title = document.getElementById("title").value;
             let writer = document.getElementById("writer").value;
@@ -365,12 +365,12 @@
     <br>
 
     <h4>12. 아래의 텍스트 상자에서 사용자가 입력할 때 마다 현재 입력된 글자와 글자수를 div#text-container에 출력되게끔 구현하시오.</h4>
-    <input type="text" oninput="updateText(this.value)">
+    <input type="text" oninput="updateText(this.value)"> <!-- 입력할 때마다 updateText() 실행 -->
     <div id="text-container"></div>
     
     <script>
         function updateText(value) {
-            document.getElementById("text-container").innerHTML = "입력된 글자: " + value + " (" + value.length + "자)";
+            document.getElementById("text-container").innerHTML = "입력된 글자: " + value + " (" + value.length + "자)"; // 입력한 값과 글자 수를 표시
         }
     </script>
 
@@ -445,7 +445,7 @@
     </table>
     
     <script>
-        let expression = ""; // 수식을 저장하는 변수
+        let expression = ""; // 연산식을 저장할 변수
     
         function addToDisplay(value) {
             let display = document.getElementById("result");
@@ -509,7 +509,7 @@
             }
     
             display.value = result;
-            expression = result.toString();
+            expression = result.toString(); // 결과를 expression에 저장
         }
     </script>
 
