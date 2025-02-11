@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- 제이쿼리가 반드시 연동되어 있어야 사용 가능-->
+</head>
+<body>
+    
+    <h1>기본 선택자를 이용해서 요소 선택</h1>
+
+    <h3>* 아이디 선택자</h3>
+    <p>특정 고유한 아이디값을 가진 요소 "하나만"을 선택하고자 할 때</p>
+
+    <h1 id="id1">테스트1</h1> <!-- 순수 자바스크립트 방식 -->
+    <h2 id="id2">테스트2</h2> <!-- 제이쿼리 방식 -->
+
+    <script>
+        $(document).ready(function(){
+            // 순수 자바스크립트 방식 => document.getElementById("아이디명");
+            // 선택된 요소 객체의 속성에 접근해서 값 변경 (대입을 통해)
+            document.getElementById("id1").style.color = "red";
+            document.getElementById("id1").innerHTML = "h1변경";
+
+            // jQuery 방식 => $("#아이디명")
+            // 선택된 요소 객체의 메소드를 통해 값 변경
+            $("#id2").css("color","yellow");
+            // $("#id2").innerHTML // 제이쿼리에서는 이렇게 안 함! 밑의 코드처럼~
+            $("#id2").html("h2변경")
+            // .html() : 선택된 요소의 innerHTML과 관련된 기능을 수행하는 메소드
+
+            console.log(document.getElementById("id1"))
+            console.log($("#id2"))
+            // 콘솔에서 조금 다르게 표기될 수는 있어도 실질적으로는 변경되는 것이 중요!
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 태그 선택자</h3>
+
+    <p>Java</p>
+    <p>Oracle</p>
+    <p>HTML</p>
+
+    <h5>CSS</h5>
+    <h5>JavaScript</h5>
+    <h5>jQuery</h5>
+
+    <script>
+        $(document).ready(function(){ // 이 문서가 준비됐을 때 함수 실행
+
+            // 순수 자바스크립트 방식 => document.getElementsByTagName("태그명"); : 배열
+            // console.log(document.getElementsByTagName("p")) // 위에 작성한 p태그 총 4개
+            const p = document.getElementsByTagName("p"); // [p,p,p,p]
+            // p.style.color = "";
+            for(let i=0; i<p.length; i++){
+                p[i].style.color = "pink";
+            }
+
+            // jQuery 방식 => $("태그명")
+            // console.log($("h5")) // 콘솔로 제이쿼리 사용해서 h5요소를 봄
+            $("h5").css("color","blue");
+
+            // 여러종류의 요소를 선택
+            $("p, h5, #id1").css("backgroundColor","yellow");
+
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 클래스 선택자</h3>
+    <p>특정한 클래스 속성을 가진 요소들 선택하고자 할 때 사용</p>
+
+    <!-- h1.item.select{Class$}*3 --> 
+    <h1 class="item">Class1</h1>
+    <h1 class="item select">Class2</h1>
+    <h1 class="item select">Class3</h1>
+
+    <script>
+        $(document).ready(function(){ // jQuery할건데 이 문서가 전부다 로딩된 이후에 함수 실행
+            // 순수 자바스크립트 방식 => document.getElementsByClassName("클래스명") : 배열
+            const item = document.getElementsByClassName("item"); // [h1, h1, h1]
+            for(let i=0; i<item.length; i++){ // for in문 쓰지말자. 제대로 안 됨!!
+                item[i].style.color = "orange";
+                item[i].onclick = function(){
+                    console.log("클릭됨")
+                }
+            }
+
+            // jQuery 방식 => $(".클래스명")
+            $(".select").css("backgroundColor","pink");
+            $(".select").click(function(){
+                alert("클릭됨")
+            });
+
+            // .click() : 클릭 이벤트와 관련된 기능을 수행하는 메소드
+        });
+    </script>
+
+    <!--
+
+        * 요소 선택하는 방법
+                        순수 자바스크립트 방식              |           jQuery 방식
+    ===========================================================================================================
+                document.getElementById("아이디명")        |        $("#아이디명")
+         document.getElementByClassName("클리스명")        |        $(".클래스명")
+         document.getElementsByTagName("태그명")           |        $("태그명")
+
+
+        * 선택된 요소의 속성값 변경하고자 할 때
+                        순수 자바스크립트 방식              |           jQuery 방식
+    ===========================================================================================================
+                | 선택된 요소객체에 직접 속성에 접근해서     | 선택된 요소의 메소드 이용
+    ===========================================================================================================
+        스타일  | .style.스타일속성 = "변경할 값"           | .css("스타일속성","변경할 값")
+        내용    | .innerHTML = "변경할 값"                 | .html("변경할 값")
+        이벤트  | .on이벤트명 = function() {}              | .이벤트명(function() {})
+    -->
+
+
+
+</body>
+</html>
