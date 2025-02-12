@@ -211,6 +211,52 @@
         })
     </script>
 
+    <h4>- selected 상태 선택자 (select > option)</h4>
+
+    국적 : 
+    <select name="national">
+        <option value="x">선택안함</option>
+        <option value="ko">한국</option>
+        <option value="us">미국</option>
+        <option value="eu">영국</option>
+    </select>
+
+    <button type="button" onclick="test()">확인</button>
+    <br>
+
+    선택한 나라 : <span id="result">선택안함</span>
+
+    <script>
+        function test(){
+            $(function(){
+                
+                // 현재 선택된 (selected 상태) option 요소 가져오기
+                console.log($("option:selected").val())
+                console.log($("option:selected").html())
+
+                // $("#result").innerHTML = 값;
+                // $("#result").html($("option:selected").val()); // 아이디가 result인 것의 선택된 옵션의 val
+                $("#result").html($("option:selected").html())
+
+            })
+        }
+    </script>
+
+    <h4>-disabled, enabled 상태 선택자 (input 요소들, button 등)</h4>
+
+    <button type="button">활성화 버튼</button>
+    <button type="button" disabled>비활성화 버튼</button>
+
+    <script>
+        $(function(){ 
+            $("button:enabled").css("backgroundColor","yellowgreen") // 활성화된 버튼 css변경
+            $("button:disabled").css("backgroundColor","orangeRed")
+        })
+    </script>
+
+
+
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
